@@ -20,3 +20,7 @@
         user: ec2-user
         key: "{{ lookup('url', 'https://{{ sat6_fqdn}}:9090/ssh/pubkey', validate_certs=False, split_lines=False) }}"
         state: present
+
+    - name: Registering {{ target_hostname }} to Insights
+      insights_register:
+        state: present
