@@ -2,8 +2,6 @@
   - name: Joining Satellite and Applying Updates
     hosts: "{{ target_hostname }}"
     become: true
-    collections:
-      - redhatinsights.insights
 
     tasks:
 
@@ -26,5 +24,4 @@
         state: present
 
     - name: Registering {{ target_hostname }} to Insights
-      insights_register:
-        state: present
+      ansible.builtin.command: insights-client --register
