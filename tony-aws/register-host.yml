@@ -2,7 +2,11 @@
   - name: Joining Satellite and Applying Updates
     hosts: "{{ target_hostname }}"
     become: true
+    collections:
+      - redhatinsights.insights
+
     tasks:
+
     - name: Installing katello-ca-consumer-latest.noarch.rpm from {{ sat6_fqdn }} on {{ target_hostname }}
       yum:
         name: http://{{ sat6_fqdn }}/pub/katello-ca-consumer-latest.noarch.rpm
