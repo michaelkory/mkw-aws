@@ -25,6 +25,6 @@
         key: "{{ lookup('url', 'https://{{ sat6_fqdn}}:9090/ssh/pubkey', validate_certs=False, split_lines=False) }}"
         state: present
 
-    - include_role: 
-        name: insights_client
-      when: ansible_os_family == 'RedHat'
+    - name: Registering {{ target_hostname }} to Insights
+      insights_register:
+        state: present
