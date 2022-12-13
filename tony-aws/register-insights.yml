@@ -1,0 +1,9 @@
+---
+  - name: Register host to Insights
+    hosts: "{{ target_hostname }}"
+    become: true
+
+    tasks:
+
+    - name: Registering {{ target_hostname }} to Insights
+      ansible.builtin.command: insights-client --register
