@@ -1,9 +1,15 @@
 ---
   - name: Register host to Insights
     hosts: "{{ target_hostname }}"
+    collections:
+      - redhatinsights.insights
     become: true
 
     tasks:
 
-    - name: Registering {{ target_hostname }} to Insights
-      ansible.builtin.command: insights-client --register
+    - include_role: 
+        name: insights_client
+      when: ansible_os_family == 'RedHat'
+
+    # - name: Registering {{ target_hostname }} to Insights
+    #   ansible.builtin.command: insights-client --register
