@@ -1,0 +1,9 @@
+---
+  - name: yum update
+    hosts: "{{ target_hostname }}"
+    become: true
+
+    tasks:
+
+    - name: Updating yum packages on {{ target_hostname }}
+      ansible.builtin.command: yum update --assumeyes
