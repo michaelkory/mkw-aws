@@ -5,4 +5,4 @@ collections:
 - name: community.aws
 - name: awx.awx
 - name: ansible.posix
-# - name: redhat.insights
+- name: redhatinsights.insights
