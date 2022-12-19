@@ -49,6 +49,7 @@
         type: A
         ttl: 7200
         value: "{{ item.public_ip_address }}"
+        overwrite: yes
       with_items:
       - "{{ ec2.instances }}"
 
