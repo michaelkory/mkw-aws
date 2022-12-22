@@ -1,0 +1,11 @@
+---
+  - name: push Satellite inventory
+    hosts: "{{ satellite_fqdn }}"
+    become: true
+
+    tasks:
+
+    - name: push Satellite inventory on {{ satellite_fqdn }}
+      ansible.builtin.command: /usr/sbin/foreman-rake rh_cloud_inventory:report:generate_upload
+      register: output
+      changed_when: "'Generated and uploaded inventory report' in output.stdout"
