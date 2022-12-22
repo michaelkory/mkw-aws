@@ -5,6 +5,11 @@
 
     tasks:
 
+    - name: forced fail when true
+      fail:
+        msg: failing because force_fail_flag is true
+      when: force_fail_flag is true
+
     - name: Installing katello-ca-consumer-latest.noarch.rpm from {{ sat6_fqdn }} on {{ target_hostname }}
       yum:
         name: http://{{ sat6_fqdn }}/pub/katello-ca-consumer-latest.noarch.rpm
