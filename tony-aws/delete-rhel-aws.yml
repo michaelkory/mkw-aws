@@ -7,6 +7,12 @@
     - group_vars/all
 
     tasks:
+
+    - name: Removing {{ target_hostname }} from Insights
+      ansible.builtin.command: sudo insights-client --unregister
+      register: output
+      changed_when: "'This system is already unregistered.' not in output.stdout"
+
     - name: List several EC2 instances according to their name tag
       ec2_instance_info:
         ec2_region: "{{region}}"
