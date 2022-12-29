@@ -1,13 +1,12 @@
 ---
   - name: Unregistering {{ target_hostname }} from Satellite and Insights
     hosts: "{{ target_hostname }}"
-    # become: true
+    become: true
 
     tasks:
     - name: Unregister {{ target_hostname }} from Insights
-      ansible.builtin.command: insights-client --unregister
-      register: output
-      changed_when: "'Successfully unregistered from the Red Hat Insights Service' in output.stdout"
+      shell: insights-client --unregister
+      ignore_errors: yes
 
     - name: Unregistering {{ target_hostname }} from {{ sat6_fqdn }}
       redhat_subscription:
