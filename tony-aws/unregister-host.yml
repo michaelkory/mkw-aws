@@ -5,8 +5,9 @@
 
     tasks:
     - name: Unregister {{ target_hostname }} from Insights
-      shell: insights-client  --unregister
-      ignore_errors: yes
+      ansible.builtin.command: insights-client --unregister
+      register: output
+      changed_when: "'Successfully unregistered from the Red Hat Insights Service' in output.stdout"
 
     - name: Unregistering {{ target_hostname }} from {{ sat6_fqdn }}
       redhat_subscription:
